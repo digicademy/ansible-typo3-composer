@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: "Torsten Schrade"
+  description: "Creates or updates composer.json for a TYPO3 project"
+  company: "Digital Academy – Academy of Sciences and Literature | Mainz"
+  license: "MIT"
+  min_ansible_version: 2.0
+  platforms:
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+  galaxy_tags:
+    - web
+    - typo3
+    - php
+    - composer
+
+dependencies: []

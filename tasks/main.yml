@@ -1,0 +1,18 @@
+---
+- name: Create or update composer.json in "{{ typo3_composer_siteroot }}{{ typo3_composer_sitename }}"
+  template:
+    src: "composer.json.j2"
+    dest: "{{ typo3_composer_siteroot }}/{{ typo3_composer_sitename }}/composer.json"
+
+- name: Chown composer.json
+  file:
+    path: "{{ typo3_composer_siteroot }}/{{ typo3_composer_sitename }}/composer.json"
+    mode: u+rw,go+r
+  when: ansible_product_name != "VirtualBox" # avoids chown errors on vagrant VM nfs mounts
+  changed_when: false
+
+- name: Execute composer {{ typo3_composer_command }}
+  composer:
+    command: "{{ typo3_composer_command }}"
+    working_dir: "{{ typo3_composer_siteroot }}/{{ typo3_composer_sitename }}/"
+#  ignore_errors: true # @see: https://github.com/composer/composer/issues/4121

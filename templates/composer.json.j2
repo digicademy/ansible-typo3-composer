@@ -1,0 +1,61 @@
+{
+  "repositories": [
+    { "type": "composer", "url": "https://composer.typo3.org/" }
+  ],
+  "config": {
+    "process-timeout": 600,
+    "preferred-install": "dist"
+  },
+  "name": "ADWLM/typo3-composer-install",
+  "description" : "TYPO3 7 LTS",
+  "license": "GPL-2.0+",
+  "require": {
+    "typo3/cms": "{{ typo3_composer_cmsversion }}",
+{% for extension in typo3_composer_extensions %}
+    {% if loop.last %}
+    "{{ extension.name }}": "{{ extension.version}}"
+    {% else %}
+    "{{ extension.name }}": "{{ extension.version}}",
+    {% endif %}
+{% endfor %}
+},
+{% if typo3_composer_autoload_psr4 or typo3_composer_autoload_files %}
+  "autoload": {
+    "psr-4": {
+    {% for component in typo3_composer_autoload_psr4 %}
+        {% if loop.last %}
+        "{{ component.name }}": "{{ component.path}}"
+        {% else %}
+        "{{ component.name }}": "{{ component.path}}",
+        {% endif %}
+    {% endfor %}
+    },
+    "files": [
+    {% for file in typo3_composer_autoload_files %}
+        {% if loop.last %}
+        "{{ file }}"
+        {% else %}
+        "{{ file }}",
+        {% endif %}
+    {% endfor %}
+    ]
+  },
+{% endif %}
+{% if typo3_composer_include_paths %}
+  "include-path": [
+{% for include_path in typo3_composer_include_paths %}
+    {% if loop.last %}
+    "{{ include_path }}"
+    {% else %}
+    "{{ include_path }}",
+    {% endif %}
+{% endfor %}
+  ],
+{% endif %}
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": "{{ typo3_composer_webdir }}"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+---
+typo3_composer_siteroot: "/var/www/vhosts/"
+
+typo3_composer_sitename: "dummy"
+
+typo3_composer_webdir: "htdocs"
+
+typo3_composer_command: "install"
+
+typo3_composer_cmsversion: "^7.6"
+
+typo3_composer_extensions: []
+#  - { name: "helhum/typo3-console", version: "^4" }
+#  - { name: "typo3-ter/be-secure-pw", version: "^7.1" }
+
+typo3_composer_autoload_psr4: []
+#  - { name: "VENDOR\\\\NAME\\\\\\", path: "path/to/component/" }
+
+typo3_composer_autoload_files: []
+#  - /path/to/file/one.php
+#  - /path/to/file/two.php
+
+typo3_composer_include_paths: []
+#  - /path/one
+#  - /path/two
