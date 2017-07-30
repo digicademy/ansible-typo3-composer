@@ -9,9 +9,8 @@ typo3_composer_command: "install"
 
 typo3_composer_cmsversion: "^7.6"
 
-typo3_composer_extensions: []
-#  - { name: "helhum/typo3-console", version: "^4" }
-#  - { name: "typo3-ter/be-secure-pw", version: "^7.1" }
+typo3_composer_extensions:
+  - { name: "helhum/typo3-console", version: "^4" }
 
 typo3_composer_autoload_psr4: []
 #  - { name: "VENDOR\\\\NAME\\\\\\", path: "path/to/component/" }
